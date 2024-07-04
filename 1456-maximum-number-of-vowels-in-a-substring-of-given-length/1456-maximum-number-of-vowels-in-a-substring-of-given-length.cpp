@@ -3,7 +3,7 @@ public:
     int maxVowels(string s, int k) {
         int count = 0, maxCount;
         
-        string str = "aeiouAEIOU";
+        string str = "aeiou";
         
         
         for (int i = 0; i < k; i++) {
