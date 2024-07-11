@@ -8,13 +8,13 @@ public:
         vector<vector<int>> difference(2);
         
         for (int i : s1) {
-            if (s2.find(i) == s2.end()) {
+            if (s2.count(i) == 0) {
                 difference[0].push_back(i);
             }            
         }
         
         for (int i : s2) {
-            if (s1.find(i) == s1.end()) {
+            if (s1.count(i) == 0) {
                 difference[1].push_back(i);
             }
         }
