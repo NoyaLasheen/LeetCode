@@ -5,13 +5,11 @@ public:
         unordered_map<int, int> mp;
         vector<int> ans;
         
-        for (int i : nums) mp[i]++;
-        
-        for (auto &pair : mp) {
-            if (pair.second > nums.size() / 3) {
-                ans.push_back(pair.first);
-            }
-        }
+        for (int i : nums) {
+            mp[i]++;
+            if (mp[i] == nums.size() / 3 + 1) ans.push_back(i);
+            
+        } 
         
         return ans;
         
