@@ -1,2 +1,2 @@
-# LeetCodeBlind75
-Solutions to LeetCode Blind75 questions
+# LeetCode Questions
+Solutions to LeetCode questions
