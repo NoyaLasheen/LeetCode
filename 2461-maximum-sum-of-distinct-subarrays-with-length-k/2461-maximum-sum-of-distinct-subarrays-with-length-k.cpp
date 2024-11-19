@@ -8,11 +8,11 @@ public:
 
         ll win_sum=0;
         for(int i=0;i<n;++i){
-            //Step-1: Include right element
+            
             freq[nums[i]]++;
             win_sum += nums[i];
 
-            //Step-2: Exclude left element
+
             if(i>=k){
                 win_sum -= nums[i-k];
                 freq[nums[i-k]]--;
@@ -20,7 +20,6 @@ public:
                     freq.erase(nums[i-k]);
             }
 
-            //Step-3: Maximize max_sum
             if(i>=k-1 and freq.size()==k)
                 max_sum = max(max_sum,win_sum);
         }
