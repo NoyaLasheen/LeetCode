@@ -3,39 +3,34 @@ class Solution {
 public:
     string repeatLimitedString(string s, int repeatLimit) {
         vector<int> freq(26,0);
-        int n=s.size();
-        for(int i=0;i<n;++i)
-            freq[s[i]-'a']++;
-        
-        priority_queue<pii> maxheap;
-        for(int i=0;i<26;++i){
-            if(freq[i]>0)
-                maxheap.push(make_pair(i,freq[i]));
-        }
-        
         string res;
-        while(!maxheap.empty()){
-            pii curr = maxheap.top();
-            maxheap.pop();
+        for (char ch : s) {
+            freq[ch - 'a']++;
+        }
+        priority_queue<pii> maxHeap;
+        for (int i = 0; i < freq.size(); i++) {
+            if(freq[i] > 0)
+                maxHeap.push(make_pair(i, freq[i]));
+        }
 
-            char curr_char = 'a' + curr.first;
-            int count = min(curr.second,repeatLimit);
-            curr.second-=count;
-            res.append(count,curr_char);
+        while (!maxHeap.empty()) {
+            pii curr = maxHeap.top();
+            maxHeap.pop();
+            int count = min(curr.second, repeatLimit);
+            curr.second -= count;
+            res.append(count, curr.first + 'a');
 
-            if(curr.second>0){
-                if(maxheap.empty()) break;
+            if (curr.second > 0) {
+                if (maxHeap.empty()) break;
 
-                pii next = maxheap.top();
-                maxheap.pop();
-                
-                char next_char = 'a' + next.first;
-                res.push_back(next_char);
+                pii next = maxHeap.top();
+                maxHeap.pop();
+                res.push_back(next.first + 'a');
                 next.second--;
 
-                if(next.second>0)
-                    maxheap.push(next);
-                maxheap.push(curr);
+                if(next.second > 0)
+                    maxHeap.push(next);
+                maxHeap.push(curr);
             }
         }
         return res;
