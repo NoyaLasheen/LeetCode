@@ -1,29 +1,37 @@
 class Solution {
+    
+    void skipSpaces(string& s,int& n,int& pos){
+        while(pos<n and s[pos]=='_')
+            pos++;
+    }
+    
 public:
     bool canChange(string start, string target) {
-        int i = 0, j = 0;
-        int n = start.length();
-        while (i < n && j < n) {
-            while (start[i] == '_') i++;
-            while (target[j] == '_') j++;
-            if (start[i] != target[j]) return false;
-            if (start[i] == 'R') {
-                if (j < i) return false;
-                else i++, j++;
-            } else if (start[i] == 'L') {
-                if (j > i) return false;
-                else i++, j++;
-            }
-        }
+        int n=start.size();
 
-        while (i < n) {
-            if (start[i] != '_') return false;
-            i++;
+        int first=0,second=0;
+        int limit_idx = -1;
+        while(first<n){
+            
+            skipSpaces(start,n,first);
+            skipSpaces(target,n,second);
+            
+            if(first==n and second==n)          return true;
+            if(start[first]!=target[second])    return false;
+
+            if(start[first]=='L' and (second<=limit_idx or second>first))
+                return false;
+            else if(start[first]=='R' and first>second)
+                return false;
+    
+            limit_idx = second;
+            first++;
+            second++;
         }
-        while (j < n) {
-            if (target[j] != '_') return false;
-            j++;
-        }
-        return true;
+        
+        skipSpaces(start,n,first);
+        skipSpaces(target,n,second);
+
+        return first==n && second==n;
     }
 };
