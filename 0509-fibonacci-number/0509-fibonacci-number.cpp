@@ -1,9 +1,8 @@
 class Solution {
 public:
     int fib(int n) {
-        if (n < 2) return n;
-        // return (fib(n - 1) + fib(n - 2));
-        int dp[n + 1];
+        if (n == 1 || n == 0) return n;
+        vector<int> dp(n + 1);
         dp[0] = 0;
         dp[1] = 1;
         for (int i = 2; i <= n; i++) {
