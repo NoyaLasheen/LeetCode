@@ -5,7 +5,7 @@ class Solution {
         if (idx >= s.length() || started && !isdigit(s[idx])) 
             return ans * sign;
 
-        // Encountering leading zeroes
+        // Encountering leading spaces
         if (!started && s[idx] == ' ') {  
             return helperAtoi(s, idx + 1, sign, ans, false);
         } 
@@ -18,12 +18,16 @@ class Solution {
 
         // Encountering digits
         if (isdigit(s[idx])) {
-            ans = ans * 10 + s[idx] - '0';
+            int digit = s[idx] - '0';
 
-            if (sign == 1 && ans >= INT_MAX) return INT_MAX;
-            if (sign == -1 && ans * sign <= INT_MIN) return INT_MIN;
+            // Check for overflow conditions before updating ans
+            if (ans > INT_MAX / 10 || (ans == INT_MAX / 10 && digit > INT_MAX % 10)) {
+                return sign == 1 ? INT_MAX : INT_MIN;
+            }
 
-            helperAtoi(s, idx + 1, sign, ans, true);
+            ans = ans * 10 + digit;
+
+            return helperAtoi(s, idx + 1, sign, ans, true);
         } 
 
         return ans * sign;
