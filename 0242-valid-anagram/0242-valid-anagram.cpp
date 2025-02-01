@@ -1,18 +1,7 @@
 class Solution {
 public:
-    bool isAnagram(string s, string t) {
-        
-           if (s.length() != t.length()) return false;
-//         map<char, int> mp;
-        
-//         for (int i = 0; i < s.length(); i++) {
-//             mp[s[i]]++;
-//             mp[t[i]]--;
-//         }
-//         for (auto &pair : mp) {
-//             if (pair.second != 0) return false;
-//         }
-//         return true;
+    bool isAnagram(string s, string t) {       
+        if (s.length() != t.length()) return false;
         
         int arr[52];
         
@@ -22,9 +11,9 @@ public:
         }
         
         for (int i : arr) {
-            if (i != 0) return false; 
-            // cout << i << " ";
+            if (i != 0) return false;  
         }
+        
         return true;
     }
 };
