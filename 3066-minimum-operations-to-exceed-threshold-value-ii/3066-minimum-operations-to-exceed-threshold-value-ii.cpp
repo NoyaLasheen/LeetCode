@@ -1,9 +1,9 @@
 class Solution {
 public:
     int minOperations(vector<int>& nums, int k) {
-        priority_queue <int, vector<int>, greater<int>> pq(nums.begin(), nums.end());
+        priority_queue <long long, vector<long long>, greater<long long>> pq(nums.begin(), nums.end());
         int count = 0;
-        int a, b;
+        long long a, b;
         while (pq.size() >= 2 && pq.top() < k) {
             a = pq.top();
             pq.pop();
