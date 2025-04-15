@@ -25,6 +25,7 @@ public:
                 int col = y + changeCol[i];
 
                 if (row >= 0 && row < m && col >= 0 && col < n && maze[row][col] == '.') {
+                    maze[row][col] = '+';
                     q.push({{row, col}, dis + 1});
                 }
             }
