@@ -8,7 +8,7 @@ class Solution {
             temp += s[i];
             if (wordSet.find(temp) != wordSet.end()) {
                 if (find(s, wordSet, i + 1, state, n)) {
-                    return true;
+                    return state[idx] = true;
                 }
             }
         }
