@@ -11,7 +11,7 @@ public:
         int changeCol[] = {-1, 0, 1, 1, 1, 0, -1, -1};
 
         q.push({1, {0, 0}});
-        dist[0][0] = 0;
+        dist[0][0] = 1;
 
         while (! q.empty()) {
             int dis = q.front().first;
