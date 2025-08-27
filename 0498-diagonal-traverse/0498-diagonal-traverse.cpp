@@ -3,31 +3,23 @@ public:
     vector<int> findDiagonalOrder(vector<vector<int>>& mat) {
         int m = mat.size();
         int n = mat[0].size();
-        map<int, vector<int>> mp;
-        
-        vector<int> result;
-        
-        //fill the map using [i+j]
-        for(int i = 0; i<m; i++) {
-            for(int j = 0; j<n; j++) {
-                mp[i+j].push_back(mat[i][j]);
+        vector<int> res;
+        int r = 0, c = 0;
+
+        while (res.size() < m * n) {
+            res.push_back(mat[r][c]);
+
+            if ((r + c) % 2 == 0) {
+                if (c == n - 1) r++;
+                else if (r == 0) c++;
+                else r--, c++;
+            } else {
+                if (r == m - 1) c++;
+                else if(c == 0) r++;
+                else r++, c--;
             }
         }
-        
-        bool flip = true;
-        for(auto &it : mp) {
-            if(flip) {
-                //it.second ko reverse kardo
-                reverse(it.second.begin(), it.second.end());
-            }
-            
-            for(int &num : it.second) {
-                result.push_back(num);
-            }
-            
-            flip = !flip;
-        }
-        
-        return result;
+
+        return res;
     }
 };
