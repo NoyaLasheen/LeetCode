@@ -1,19 +1,22 @@
 class Solution {
 public:
     int areaOfMaxDiagonal(vector<vector<int>>& dimensions) {
-        float maxRoot = 0;
-        int idx = 0;
+        int maxDiag = 0;
+        int maxArea = 0;
         int n = dimensions.size();
 
         for (int i = 0; i < n; i++) {
             int a = dimensions[i][0];
             int b = dimensions[i][1];
+            int diag = a * a + b * b;
+            int area = a * b;
 
-            if (sqrt(a * a + b * b) > maxRoot) {
-                maxRoot = sqrt(a * a + b * b);
-                idx =  i;
+            if (diag > maxDiag || (diag == maxDiag && area > maxArea)) {
+                maxArea = area;
+                maxDiag = diag;
             }
+            
         }
-        return dimensions[idx][0] * dimensions[idx][1];
+        return maxArea;
     }
 };
